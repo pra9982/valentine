@@ -69,8 +69,3 @@ button {
 #noBtn {
   position: relative;
 }
-function showHint() {
-  document.getElementById("hint").innerText =
-    "No hints" +
-  ;
-}
