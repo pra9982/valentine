@@ -75,4 +75,5 @@ function yesClicked() {
   goToPage(5);
 }
 
+
 createGrid();
