@@ -1,0 +1,71 @@
+body {
+  font-family: "Georgia", serif;
+  background: #f7f1e6;
+  color: #2b2b2b;
+  text-align: center;
+  padding: 40px;
+}
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+h1, h2 {
+  font-weight: normal;
+}
+
+.poem {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin: 30px 0;
+}
+
+.subtitle {
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  background: none;
+  border: 1px solid #2b2b2b;
+}
+
+#grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  max-width: 500px;
+  margin: 30px auto;
+}
+
+.word {
+  padding: 12px;
+  border: 1px solid #444;
+  cursor: pointer;
+}
+
+.word.selected {
+  background: #ddd;
+}
+
+.word.correct {
+  background: #b8c6a7;
+  cursor: default;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+#noBtn {
+  position: relative;
+}

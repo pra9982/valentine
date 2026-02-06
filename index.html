@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>For You, Kashish</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="page1" class="page active">
+  <h1>For you, Kashish</h1>
+  <p class="poem">
+    In every great story,<br>
+    there is a quiet chapter<br>
+    where two lives begin to rhyme.
+  </p>
+  <button onclick="goToPage(2)">Turn the page</button>
+</div>
+
+<div id="page2" class="page">
+  <h2>Connections</h2>
+  <p class="subtitle">A very easy one. Just us.</p>
+
+  <div id="grid"></div>
+
+  <p id="message"></p>
+</div>
+
+<div id="page3" class="page">
+  <p class="poem">
+    Some connections are habits.<br>
+    Some are accidents.<br>
+    Some feel like fate.
+  </p>
+  <button onclick="goToPage(4)">One last question</button>
+</div>
+
+<div id="page4" class="page">
+  <h2>Will you be my Valentine?</h2>
+  <div class="buttons">
+    <button onclick="yesClicked()">Yes</button>
+    <button id="noBtn" onmouseover="moveNo()">No</button>
+  </div>
+</div>
+
+<div id="page5" class="page">
+  <p class="poem">
+    Then it’s settled.<br>
+    Another chapter,<br>
+    written together.
+  </p>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
