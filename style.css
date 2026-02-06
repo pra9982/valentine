@@ -71,6 +71,6 @@ button {
 }
 function showHint() {
   document.getElementById("hint").innerText =
-    "No hints" +
+    "No hints " +
   ;
 }
