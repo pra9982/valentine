@@ -1,71 +1,78 @@
-body {
-  font-family: "Georgia", serif;
-  background: #f7f1e6;
-  color: #2b2b2b;
-  text-align: center;
-  padding: 40px;
+let currentPage = 1;
+let selected = [];
+let solvedGroups = 0;
+
+const groups = [
+  ["Fragrances", "Classics", "Curl cream", "Smosh"],
+  ["Football", "NYT Connections", "Pink Floyd", "Creatine"],
+  ["Coffee", "Roses", "Perfume", "Baggy jeans"],
+  ["Boots", "Passport", "Phone", "Purse light"]
+];
+
+const words = groups.flat().sort(() => Math.random() - 0.5);
+
+function goToPage(n) {
+  document.getElementById(`page${currentPage}`).classList.remove("active");
+  document.getElementById(`page${n}`).classList.add("active");
+  currentPage = n;
 }
 
-.page {
-  display: none;
+function createGrid() {
+  const grid = document.getElementById("grid");
+  words.forEach(word => {
+    const div = document.createElement("div");
+    div.innerText = word;
+    div.className = "word";
+    div.onclick = () => selectWord(div, word);
+    grid.appendChild(div);
+  });
 }
 
-.page.active {
-  display: block;
+function selectWord(div, word) {
+  if (div.classList.contains("correct")) return;
+
+  div.classList.toggle("selected");
+
+  if (selected.includes(word)) {
+    selected = selected.filter(w => w !== word);
+  } else {
+    selected.push(word);
+  }
+
+  if (selected.length === 4) {
+    checkGroup();
+  }
 }
 
-h1, h2 {
-  font-weight: normal;
+function checkGroup() {
+  for (let group of groups) {
+    if (selected.every(word => group.includes(word))) {
+      document.querySelectorAll(".word.selected").forEach(el => {
+        el.classList.remove("selected");
+        el.classList.add("correct");
+      });
+      solvedGroups++;
+      selected = [];
+      document.getElementById("message").innerText = "That feels right.";
+      if (solvedGroups === 4) {
+        setTimeout(() => goToPage(3), 1000);
+      }
+      return;
+    }
+  }
+  document.getElementById("message").innerText = "Close, but not quite.";
+  document.querySelectorAll(".word.selected").forEach(el => el.classList.remove("selected"));
+  selected = [];
 }
 
-.poem {
-  font-size: 1.2rem;
-  line-height: 1.8;
-  margin: 30px 0;
+function moveNo() {
+  const btn = document.getElementById("noBtn");
+  btn.style.left = Math.random() * 100 - 50 + "px";
+  btn.style.top = Math.random() * 40 - 20 + "px";
 }
 
-.subtitle {
-  font-style: italic;
-  margin-bottom: 20px;
+function yesClicked() {
+  goToPage(5);
 }
 
-button {
-  padding: 10px 20px;
-  font-size: 1rem;
-  cursor: pointer;
-  background: none;
-  border: 1px solid #2b2b2b;
-}
-
-#grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  max-width: 500px;
-  margin: 30px auto;
-}
-
-.word {
-  padding: 12px;
-  border: 1px solid #444;
-  cursor: pointer;
-}
-
-.word.selected {
-  background: #ddd;
-}
-
-.word.correct {
-  background: #b8c6a7;
-  cursor: default;
-}
-
-.buttons {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-#noBtn {
-  position: relative;
-}
+createGrid();
